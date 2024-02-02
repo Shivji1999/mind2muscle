@@ -1,0 +1,96 @@
+  /* RegisterForm.css */
+  .register-card {
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f3f3f3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .register-card button {
+    width: 100%;
+    padding: 10px;
+    background-color: #e44d26;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .input-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .input-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+  }
+  
+  .register-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .google-login {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .google-icon {
+    margin-right: 10px;
+  }
+  
+  .login-text {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .login-link {
+    color: #e44d26;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  /* RegisterForm.css */
+.register-card {
+  /* ... existing styles ... */
+  position: relative; /* Add this line to allow absolute positioning within the relative container */
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px; /* Add margin to separate from the input field */
+}
+
+/* Rest of your styles */
+
+  
