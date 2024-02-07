@@ -21,6 +21,12 @@ public class AuthenticationService {
 	private final AuthenticationManager authenticationManager;
 	
 	public AuthenticationResponse register(RegisterRequest request) {
+		var dbUserByEmail = repo.findByEmail(request.getEmail()).orElse(null);
+		var dbUserByMobile = repo.findByMobile(request.getPhoneNumber()).orElse(null);
+		if(dbUserByEmail!=null || dbUserByMobile!=null) {
+			throw new RuntimeException("User already exists with provided email or phone number");
+		}
+		
 		var user = User.builder()
 				.name(request.getFullName())
 				.email(request.getEmail())

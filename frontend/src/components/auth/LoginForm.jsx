@@ -1,10 +1,11 @@
-// LoginForm.js
+
 import React, { useState } from 'react';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 import './LoginForm.css';
+import api from '../../config/api-service';
 
 const LoginForm = ({ onToggleForm }) => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ phoneNumber: '', password: '' });
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
@@ -12,25 +13,35 @@ const LoginForm = ({ onToggleForm }) => {
     setErrors({ ...errors, [e.target.name]: '' });
   };
 
+  const handleLoginUser = async () => {
+    try {
+      const createdUser = await api.loginUser(formData);
+      console.log('User created successfully:', createdUser);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   const handleLogin = () => {
-    // Full validation
+  
     const newErrors = {};
-    if (!formData.email.trim()) {
+    if (!formData.phoneNumber.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
     }
 
     if (!formData.password.trim()) {
       newErrors.password = 'Password is required';
     }
 
-    // If there are errors, display them
+   
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      // Perform login logic here
+      
       console.log('Logging in:', formData);
+      handleLoginUser();
     }
   };
 
@@ -40,7 +51,7 @@ const LoginForm = ({ onToggleForm }) => {
       <div className="input-container">
         <input
           type="text"
-          name="email"
+          name="phoneNumber"
           placeholder="Email/Number"
           value={formData.email}
           onChange={handleInputChange}

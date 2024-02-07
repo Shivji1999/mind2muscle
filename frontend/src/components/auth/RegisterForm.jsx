@@ -1,12 +1,13 @@
-// RegisterForm.js
+
 import React, { useState } from 'react';
 import { FaUser, FaPhone, FaEnvelope, FaLock } from 'react-icons/fa';
 import './RegisterForm.css';
+import api from '../../config/api-service';
 
 const RegisterForm = ({ onToggleForm }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
+    fullName: '',
+    phoneNumber: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -18,18 +19,29 @@ const RegisterForm = ({ onToggleForm }) => {
     setErrors({ ...errors, [e.target.name]: '' });
   };
 
+  const handleCreateUser = async () => {
+    try {
+      const createdUser = await api.createUser(formData);
+      console.log('User created successfully:', createdUser);
+    
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleRegister = () => {
-    // Full validation
+    
     const newErrors = {};
-    if (!formData.name.trim()) {
+    if (!formData.fullName.trim()) {
       newErrors.name = 'Name is required';
     }
 
-    if (!formData.phone.trim()) {
+    if (!formData.phoneNumber.trim()) {
       newErrors.phone = 'Phone is required';
-    } else if (!/^\d{10}$/.test(formData.phone)) {
-      newErrors.phone = 'Invalid phone number';
-    }
+    } 
+    // else if (!/^\d{10}$/.test(formData.phone)) {
+    //   newErrors.phone = 'Invalid phone number';
+    // }
 
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
@@ -47,12 +59,14 @@ const RegisterForm = ({ onToggleForm }) => {
       newErrors.confirmPassword = 'Passwords do not match';
     }
 
-    // If there are errors, display them
+   
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      // Perform registration logic here
+ 
       console.log('Registering:', formData);
+      handleCreateUser();
+
     }
   };
 
@@ -62,7 +76,7 @@ const RegisterForm = ({ onToggleForm }) => {
       <div className="input-container">
         <input
           type="text"
-          name="name"
+          name="fullName"
           placeholder="Name"
           value={formData.name}
           onChange={handleInputChange}
@@ -73,7 +87,7 @@ const RegisterForm = ({ onToggleForm }) => {
       <div className="input-container">
         <input
           type="tel"
-          name="phone"
+          name="phoneNumber"
           placeholder="Phone"
           value={formData.phone}
           onChange={handleInputChange}

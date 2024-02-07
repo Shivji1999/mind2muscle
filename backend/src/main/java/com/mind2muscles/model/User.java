@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,12 +30,16 @@ public class User implements UserDetails{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
+	@Column(unique = true)
 	private String email;
+	@Column(unique = true)
 	private String mobile;
 	private String password;
 	
 	@Enumerated(EnumType.STRING)
-	private Role role;
+	@Column(nullable = false) 
+	@Builder.Default
+	private Role role = Role.VISTOR;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -43,7 +48,7 @@ public class User implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		return email;
+		return mobile;
 	}
 
 	@Override

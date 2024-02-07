@@ -1,6 +1,7 @@
 package com.mind2muscles.auth;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class AuthController {
 	
 	public final AuthenticationService service;
@@ -21,7 +23,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/authenticate")
-	public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest request){
+	public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request){
 		return ResponseEntity.ok(service.authenticate(request));
 	}
 }

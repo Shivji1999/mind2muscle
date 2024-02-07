@@ -1,0 +1,36 @@
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .search-container select {
+    flex: 1;
+    padding: 10px;
+    border-top: 0; 
+    border-right: 1px solid black; 
+    border-bottom: 0; 
+    border-left: 0; 
+    appearance: none;
+    background-color: #f0f0f0;
+  }
+  
+  .search-container button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .search-container button i {
+    margin-right: 5px;
+  }
+  

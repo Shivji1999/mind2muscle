@@ -10,4 +10,5 @@ import com.mind2muscles.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findByMobile(String mobile);
+	Optional<User> findByEmail(String email);
 }
